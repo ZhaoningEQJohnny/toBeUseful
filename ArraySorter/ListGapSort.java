@@ -6,28 +6,28 @@ class ListGapSort{
         quickSort(list1, list2, pivot+1, high);
     }
     public static int partition(List<Integer> list1, List<Integer> list2, int low, int high){
-        int npivot = list2.get(high);
-        int apivot = list1.get(high);
+        int pivot1 = list1.get(high);
+        int pivot2 = list2.get(high);
         int j = low;
         for(int i =low; i<=high;i++){
-            int ni = list2.get(i);
-            int nj = list2.get(j);
-            int ai = list1.get(i);
-            int aj = list1.get(j);
-            if(ni-ai<npivot-apivot){
-                list2.set(i,nj);
-                list2.set(j,ni);
-                list1.set(j,ai);
-                list1.set(i,aj);
+            int i1 = list1.get(i);
+            int j1 = list1.get(j);
+            int i2 = list2.get(i);
+            int j2 = list2.get(j);
+            if(i1-i2<pivot1-pivot2){
+                list1.set(i,j1);
+                list1.set(j,i1);
+                list2.set(i,j2);
+                list2.set(j,i2);
                 j++;
             }
         }
-        int nj = list2.get(j);
-        int aj = list1.get(j);
-        list2.set(high,nj);
-        list2.set(j,npivot);
-        list1.set(high,aj);
-        list1.set(j,apivot);
+        int j1 = list1.get(j);
+        int j2 = list2.get(j);
+        list1.set(high,j1);
+        list1.set(j,pivot1);
+        list2.set(high,j2);
+        list2.set(j,pivot2);
         return j;
     }
 }
